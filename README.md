@@ -138,3 +138,13 @@ NOx    1
   - OLED display
   - AWS MQTT Test Client
   - DynamoDB table
+
+**Output in MQTT Client**
+
+<img width="1125" height="676" alt="Screenshot 2025-12-19 214317" src="https://github.com/user-attachments/assets/7a1aef4d-c752-4f4a-baba-d01fd038dcd2" />
+
+**Table data in DynamoDB**
+
+<img width="1384" height="708" alt="Screenshot 2025-12-19 214341" src="https://github.com/user-attachments/assets/746bcae5-8ba2-448d-ac61-bf634c3f7bfb" />
+
+
