@@ -1,12 +1,12 @@
 **ESP32 Air Quality Monitoring System**
-ESP32 + SEN55 + BME688 + OLED + AWS IoT Core + DynamoDB
+- ESP32 + SEN55 + BME688 + OLED + AWS IoT Core + DynamoDB
 
 **Project Overview**
-This project implements a real-time air quality monitoring system using ESP32, Sensirion SEN55, and Bosch BME688 sensors.
-The measured environmental data is:
-Displayed locally on an OLED display
-Published securely to AWS IoT Core using MQTT
-Stored in AWS DynamoDB for long-term storage and analysis
+- This project implements a real-time air quality monitoring system using ESP32, Sensirion SEN55, and Bosch BME688 sensors.
+- The measured environmental data is:
+  - Displayed locally on an OLED display
+  - Published securely to AWS IoT Core using MQTT
+  - Stored in AWS DynamoDB for long-term storage and analysis
 
 **Features**
 Real-time measurement of:
@@ -38,20 +38,7 @@ Real-time measurement of:
 | GND       | GND  | GND   | GND    |
 
 **Project structure**
-├── include
-│   ├── aws_iot.hpp
-│   ├── config.hpp
-│   ├── display.hpp
-│   ├── sensors.hpp
-│
-├── src
-│   ├── aws_iot.cpp
-│   ├── display.cpp
-│   ├── sensors.cpp
-│   ├── main.cpp
-│
-├── platformio.ini
-├── README.md
+<img width="711" height="453" alt="image" src="https://github.com/user-attachments/assets/b75d4ba4-f4c3-41a2-aaec-1d1da3f42b72" />
 
 **Software & Libraries**
 - PlatformIO (VS Code)
