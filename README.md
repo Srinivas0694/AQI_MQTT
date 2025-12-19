@@ -77,53 +77,35 @@ Partition key: device_id (String)
 Sort key: timestamp (Number)
 
 **Create AWS IoT Thing**
-Create a Thing in AWS IoT Core
-Download certificates:
-Device Certificate
-Private Key
-Amazon Root CA
-Attach policy allowing:
-iot:Connect
-iot:Publish
-iot:Receive
-iot:Subscribe
+- Create a Thing in AWS IoT Core
+- Download certificates:
+- Device Certificate
+- Private Key
+- Amazon Root CA
+- Attach policy allowing:
+  iot:Connect
+  iot:Publish
+  iot:Receive
+  iot:Subscribe
 
 **MQTT Topic**
-  #define MQTT_TOPIC "esp32/airquality"
+  - #define MQTT_TOPIC "esp32/airquality"
 Subscribe in AWS Console:
-  AWS IoT Core → MQTT test client → Subscribe
+  - AWS IoT Core → MQTT test client → Subscribe
 
 **IoT Rule → DynamoDB**
 SQL Query:
-    SELECT * FROM 'esp32/airquality'
+    - SELECT * FROM 'esp32/airquality'
 Action:
-    Insert message into DynamoDB table
+    - Insert message into DynamoDB table
     
-Data Format (JSON Payload)
-json :
-{
-  "device_id": "esp32_01",
-  "timestamp": 1734501234,
-  "pm1_0": 7.5,
-  "pm2_5": 8.1,
-  "pm4_0": 8.3,
-  "pm10": 8.4,
-  "temperature": 25.3,
-  "humidity": 39.1,
-  "voc": 182,
-  "nox": 1
-}
+**Data Format (JSON Payload)**
+<img width="711" height="400" alt="image" src="https://github.com/user-attachments/assets/9a887e9e-d20b-4bc7-9884-cc95c158add6" />
+
 
 **OLED Display Output**
-DEVICE 1
-PM1.0  7.5
-PM2.5  8.1
-PM4.0  8.3
-PM10   8.4
-Temp   25.3 C
-RH     39 %
-VOC    182
-NOx    1
+<img width="716" height="354" alt="image" src="https://github.com/user-attachments/assets/49034a01-a20a-4b8e-86e6-da23cc8e2303" />
+
 
 **How to Run the Project**
 1.Install VS Code + PlatformIO
