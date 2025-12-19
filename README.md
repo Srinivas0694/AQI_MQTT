@@ -116,7 +116,6 @@ json :
 
 **OLED Display Output**
 DEVICE 1
-────────────
 PM1.0  7.5
 PM2.5  8.1
 PM4.0  8.3
