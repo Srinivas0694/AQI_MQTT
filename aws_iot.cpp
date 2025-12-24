@@ -1,6 +1,7 @@
 #include "aws_iot.hpp"
 #include "config.hpp"
 #include <WiFi.h>
+String deviceToken;
 #include <WiFiClientSecure.h>   // ✅ REQUIRED
 #include <PubSubClient.h>
 #include <ArduinoJson.h>
@@ -36,59 +37,66 @@ rqXRfboQnoZsG4q5WTP468SQvvG5
 
 const char AWS_CERT_CRT[] PROGMEM = R"EOF(
 -----BEGIN CERTIFICATE-----
-
-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
+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
-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
+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
-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
+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
 -----END CERTIFICATE-----
 )EOF";
 
 const char AWS_CERT_PRIVATE[] PROGMEM = R"EOF(
 -----BEGIN RSA PRIVATE KEY-----
-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
+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
 -----END RSA PRIVATE KEY-----
 )EOF";
 
 void aws_init() {
+  String mac = WiFi.macAddress();
+  mac.replace(":", "");
+  deviceToken = "ESP32_" + mac;
+
+  Serial.print("Device Token: ");
+  Serial.println(deviceToken);
+
+
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
@@ -109,7 +117,7 @@ void aws_init() {
 void aws_publish(const SensorData &d) {
   StaticJsonDocument<256> doc;
 
-  doc["device_id"]  = DEVICE_ID;
+  doc["device_token"] = deviceToken;
   doc["timestamp"]  = millis() / 1000;
   doc["pm1_0"]       = d.pm1_0;
   doc["pm2_5"]       = d.pm2_5;
@@ -117,6 +125,7 @@ void aws_publish(const SensorData &d) {
   doc["pm10"]        = d.pm10;
   doc["temperature"] = d.temperature;
   doc["humidity"]    = d.humidity;
+  doc["co2"]         = d.co2;
   doc["voc"]         = d.voc;
   doc["nox"]         = d.nox;
 
@@ -125,33 +134,19 @@ void aws_publish(const SensorData &d) {
   client.publish(MQTT_TOPIC, buffer);
 }
 void aws_loop() {
+    if (!client.connected()) {
+        Serial.println("Connecting to AWS IoT...");
 
-  Serial.println("AWS loop running");
+        if (client.connect(DEVICE_TOKEN)) {
+            Serial.println("AWS IoT connected");
+        } else {
+            Serial.print("AWS IoT connect failed, rc=");
+            Serial.println(client.state());
+            delay(3000);
+            return;
+        }
+    }
 
-  // 1️⃣ WiFi status debug
-  Serial.print("WiFi status: ");
-  if (WiFi.status() == WL_CONNECTED) {
-    Serial.println("CONNECTED");
-  } else {
-    Serial.println("NOT CONNECTED");
-    return;
-  }
-
-  // 2️⃣ MQTT connection debug
-  Serial.print("MQTT connected: ");
-  Serial.println(client.connected() ? "YES" : "NO");
-
-  // 3️⃣ MQTT error code (MOST IMPORTANT)
-  Serial.print("MQTT state code: ");
-  Serial.println(client.state());
-
-  if (!client.connected()) {
-    Serial.println("Trying to reconnect MQTT...");
-    client.connect(DEVICE_ID);
-    return;
-  }
-
-  client.loop();
-  Serial.println("MQTT loop OK");
+    client.loop();
 }
 
