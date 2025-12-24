@@ -25,59 +25,51 @@ void display_init() {
   display.display();
 }
 
-
-
 void display_show(const SensorData &data) {
-  display.clearDisplay();
-  display.setTextSize(1);
-  display.setTextColor(SSD1306_WHITE);
+    display.clearDisplay();
+    display.setRotation(1);           // Portrait
+    display.setTextSize(1);
+    display.setTextColor(SSD1306_WHITE);
 
-  int x = 0;
-  int y = 0;
-  int lineGap = 12;
+    int y = 0;
+    int lineGap = 10;                  // controls spacing
 
-  display.setCursor(x, y);
-  display.println("DEVICE 1");
+    display.setCursor(0, y);
+    display.println("DEVICE 1");
+    y += lineGap + 2;
 
-  y += lineGap;
-  display.drawLine(0, y, 64, y, SSD1306_WHITE);
+    display.println("----------");
+    y += lineGap;
 
-  y += lineGap;
-  display.setCursor(x, y);
-  display.printf("PM1.0:%.1f", data.pm1_0);
+    display.setCursor(0, y);
+    display.print("PM1.0:"); display.println(data.pm1_0); y += lineGap;
 
-  y += lineGap;
-  display.setCursor(x, y);
-  display.printf("PM2.5:%.1f", data.pm2_5);
+    display.setCursor(0, y);
+    display.print("PM2.5:"); display.println(data.pm2_5); y += lineGap;
+    
+    display.setCursor(0, y);
+    display.print("PM4.0:"); display.println(data.pm4_0); y += lineGap;
 
-  y += lineGap;
-  display.setCursor(x, y);
-  display.printf("PM4.0:%.1f", data.pm4_0);
+    display.setCursor(0, y);
+    display.print("PM10 :"); display.println(data.pm10); y += lineGap;
 
-  y += lineGap;
-  display.setCursor(x, y);
-  display.printf("PM10: %.1f", data.pm10);
+    display.setCursor(0, y);
+    display.print("Temp:"); display.print(data.temperature); display.println(" C"); y += lineGap;
 
-  y += lineGap;
-  display.setCursor(x, y);
-  display.printf("Temp:%.1fC", data.temperature);
+    display.setCursor(0, y);
+    display.print("RH:"); display.print(data.humidity); display.println(" %"); y += lineGap;
 
-  y += lineGap;
-  display.setCursor(x, y);
-  display.printf("RH:%.0f %%", data.humidity);
+    display.setCursor(0, y);
+    display.print("VOC:"); display.println(data.voc); y += lineGap;
 
-  y += lineGap;
-  display.setCursor(x, y);
-  display.print("VOC: ");
-  display.print((int)data.voc);
+    display.setCursor(0, y);
+    display.print("NOx:"); display.println(data.nox); y += lineGap;
 
-  y += lineGap;
-  display.setCursor(0, y);
-  display.print("NOx: ");
-  display.print((int)data.nox);
+    display.setCursor(0, y);
+    display.print("CO2:"); display.print(data.co2); display.println(" ppm");
 
-
-  display.display();
+    display.display();
 }
+
 
 
